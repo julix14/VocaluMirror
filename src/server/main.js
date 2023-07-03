@@ -1,12 +1,10 @@
-const express = require("express");
-const ViteExpress = require("vite-express");
+import express from "express";
+import { listen } from "vite-express";
 
 const app = express();
 
 app.get("/hello", (req, res) => {
-  res.send("Hello Vite + Vue!");
+    res.send("Hello Vite + Vue!");
 });
 
-ViteExpress.listen(app, 3000, () =>
-  console.log("Server is listening on port 3000...")
-);
+listen(app, 3000, () => console.log("Server is listening on port 3000..."));
