@@ -1,39 +1,42 @@
 <template>
     <div
-        class="bg-white flex flex-col w-80 h-80 rounded-3xl text-center hover:h-96 ease-in-out duration-200 cursor-pointer"
+        class="bg-white flex flex-col w-80 h-80 rounded-2xl text-center hover:h-96 ease-in duration-200 delay-75 cursor-pointer drop-shadow-lg"
         @mouseenter="textVisible = true"
         @mouseleave="textVisible = false">
-        <img :src="props.imgPath" class="p-2 z-10" />
-        <Transition
-            enter-active-class="duration-300 ease-in-out"
-            enter-from-class="-m-20 opacity-0 -z-10"
-            enter-to-class="m-0 opacity-100"
-            leave-active-class="duration-300 ease-in-out"
-            leave-from-class="m-0 opacity-100"
-            leave-to-class="-m-20 opacity-0 -z-10">
-            <span class="text-6xl font-bold" v-if="textVisible">{{
-                title
-            }}</span>
-        </Transition>
+        <img :src="getFullUrl(imgPath)" class="p-10 z-20" />
+
+        <span
+            class="text-5xl font-bold duration-300 ease-in-out delay-75"
+            :class="[
+                textVisible ? 'mt-0 opacity-100' : '-mt-20 opacity-0 -z-10',
+            ]"
+            >{{ title }}</span
+        >
     </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-const props = defineProps({
+defineProps({
     imgPath: {
         type: String,
-        default: "src/client/assets/home/boxing-gloves.png",
+        required: true,
     },
     title: {
         type: String,
-        default: "Battle",
+        required: true,
     },
     route: {
         type: String,
-        default: "/test",
+        required: false,
     },
 });
 
 const textVisible = ref(false);
+
+function getFullUrl(relativeUrl) {
+    const baseUrl = new URL(import.meta.url);
+    const fullPath = `src/client/assets/${relativeUrl}`;
+    return new URL(fullPath, baseUrl.origin).href;
+}
 </script>
