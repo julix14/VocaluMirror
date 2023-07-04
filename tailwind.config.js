@@ -6,5 +6,8 @@ export const theme = {
             orange: "#FF862E",
         },
     },
+    fontFamily: {
+        sans: ["'Fuzzy Bubbles'", "cursive"],
+    },
 };
 export const plugins = [];

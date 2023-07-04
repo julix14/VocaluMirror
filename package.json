@@ -11,7 +11,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "vite-express": "*",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "^4.2.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
