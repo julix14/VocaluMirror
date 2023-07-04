@@ -2,8 +2,7 @@
     <div
         class="bg-white flex flex-col w-80 h-80 rounded-3xl text-center hover:h-96 ease-in-out duration-200 cursor-pointer"
         @mouseenter="textVisible = true"
-        @mouseleave="textVisible = false"
-        @click="goTo">
+        @mouseleave="textVisible = false">
         <img :src="props.imgPath" class="p-2 z-10" />
         <Transition
             enter-active-class="duration-300 ease-in-out"
@@ -21,7 +20,6 @@
 
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
 const props = defineProps({
     imgPath: {
         type: String,
@@ -38,8 +36,4 @@ const props = defineProps({
 });
 
 const textVisible = ref(false);
-
-function goTo() {
-    axios.get(props.route);
-}
 </script>
