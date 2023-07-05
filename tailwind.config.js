@@ -4,6 +4,7 @@ export const theme = {
     extend: {
         colors: {
             orange: "#FF862E",
+            lightBlue: "#7AD0DF",
         },
     },
     fontFamily: {
