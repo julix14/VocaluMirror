@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRoute, RouterLink } from "vue-router";
+import { RouterLink } from "vue-router";
 
 defineProps({
     imgPath: {
@@ -28,11 +28,13 @@ defineProps({
         type: String,
         required: true,
     },
+    route: {
+        type: String,
+        required: false,
+    },
 });
 
 const textVisible = ref(false);
-
-const route = useRoute();
 
 function getFullUrl(relativeUrl) {
     const baseUrl = new URL(import.meta.url);
