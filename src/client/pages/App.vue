@@ -1,5 +1,12 @@
 <script setup>
 import MenuButton from "../components/buttons/MenuButton.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+function goToRoute(route) {
+    router.push(route);
+}
 </script>
 
 <template>
@@ -11,9 +18,9 @@ import MenuButton from "../components/buttons/MenuButton.vue";
             </p>
         </div>
         <div class="flex justify-around m-10">
-            <MenuButton title="Battle" img-path="home/battle-img.png" />
-            <MenuButton title="Matching" img-path="home/matching-img.png" />
-            <MenuButton title="Flash Cards" img-path="home/flash-card-img.png" />
+            <MenuButton title="Battle" img-path="home/battle-img.png" @click="goToRoute('/battle')" />
+            <MenuButton title="Matching" img-path="home/matching-img.png" @click="goToRoute('/matching')" />
+            <MenuButton title="Flash Cards" img-path="home/flash-card-img.png" @click="goToRoute('/flash-cards')" />
         </div>
     </div>
 </template>
