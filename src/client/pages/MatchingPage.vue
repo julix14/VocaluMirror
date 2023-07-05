@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <h1>Welcome to the New Page!</h1>
+    <h1>Welcome to the Matching Page!</h1>
     <p>{{ message }}</p>
     <button @click="updateMessage">Update Message</button>
   </div>

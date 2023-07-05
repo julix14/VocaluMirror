@@ -8,7 +8,6 @@ function goToRoute(route) {
     router.push(route);
 }
 </script>
-
 <template>
     <div class="bg-orange w-screen h-screen flex flex-col justify-start">
         <div>
@@ -22,6 +21,7 @@ function goToRoute(route) {
             <MenuButton title="Matching" img-path="home/matching-img.png" @click="goToRoute('/matching')" />
             <MenuButton title="Flash Cards" img-path="home/flash-card-img.png" @click="goToRoute('/flash-cards')" />
         </div>
+        
     </div>
 </template>
 
