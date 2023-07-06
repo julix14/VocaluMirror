@@ -18,6 +18,8 @@ export const theme = {
         colors: {
             orange: "#FF862E",
             lightBlue: "#7AD0DF",
+            correctGreen: "#41C503",
+            wrongRed: "#FD0000",
         },
     },
     fontFamily: {
