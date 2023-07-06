@@ -4,7 +4,7 @@
         enter-to-class="rotate-y-0"
         enter-active-class="transition-transform duration-500 "
         leave-from-class="rotate-y-0"
-        leave-to-class="rotate-y-90 hidden"
+        leave-to-class="rotate-y-180 hidden"
         leave-active-class="transition-transform duration-500 ">
         <div v-if="!showBackside" class="bg-white rounded-3xl w-1/2 h-1/2 mt-5 p-6 drop-shadow-2xl">
             <div class="h-full flex flex-col justify-between">
