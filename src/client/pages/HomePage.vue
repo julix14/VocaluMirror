@@ -1,7 +1,3 @@
-<script setup>
-import MenuButton from "../components/buttons/MenuButton.vue";
-</script>
-
 <template>
     <div class="bg-orange w-screen h-screen flex flex-col justify-start">
         <div>
@@ -11,11 +7,17 @@ import MenuButton from "../components/buttons/MenuButton.vue";
             </p>
         </div>
         <div class="flex justify-around m-10">
-            <MenuButton title="Battle" img-path="home/battle-img.png" />
-            <MenuButton title="Matching" img-path="home/matching-img.png" />
-            <MenuButton title="Flash Cards" img-path="home/flash-card-img.png" />
+            <MenuButton title="Battle" img-path="home/battle-img.png" route="/battle" />
+            <MenuButton title="Matching" img-path="home/matching-img.png" route="/matching" />
+            <MenuButton title="Flash Cards" img-path="home/flash-card-img.png" route="/flash-cards" />
         </div>
+        
     </div>
 </template>
+
+
+<script setup>
+import MenuButton from "../components/buttons/MenuButton.vue";
+</script>
 
 <style scoped></style>
