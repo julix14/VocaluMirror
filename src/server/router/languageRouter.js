@@ -1,6 +1,7 @@
-import { Router, json, urlencoded } from "express";
-const router = Router();
-import { query } from "../database/connectToDatabase";
+const express = require("express");
+const router = express.Router();
+const { json, urlencoded } = require("body-parser");
+const { query } = require("../database/connectToDatabase");
 
 router.use(json());
 router.use(urlencoded({ extended: true }));
@@ -71,4 +72,4 @@ router.delete("/language/:id", (req, res) => {
     });
 });
 
-export default router;
+module.exports = router;
