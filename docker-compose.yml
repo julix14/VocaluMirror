@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+    vocalu_database:
+        image: postgres:latest
+        container_name: Vocalu_Database
+        environment:
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: Vocalu
+        ports:
+            - "5432:5432"
+        volumes:
+            - vocalu_data:/var/lib/postgresql/data
+
+volumes:
+    vocalu_data:
