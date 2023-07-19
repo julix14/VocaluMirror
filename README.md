@@ -2,7 +2,7 @@
 
 ## Run the Project:
 
-1. Rename the `.env.example` file to `.env`
+1. Rename the `env.example` file to `.env`
 2. `npm install` To install all dependecies that are needed
 3. `npm run dev` To start the development server
 
