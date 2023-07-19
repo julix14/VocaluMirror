@@ -1,6 +1,6 @@
 const express = require("express");
 const ViteExpress = require("vite-express");
-const userRouter = require("./router/userRouter");
+const userRouter = require("./router/userRouter").default;
 
 const app = express();
 

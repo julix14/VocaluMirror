@@ -1,12 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const connection = require("../database/connectToDatabase");
+import { Router, json, urlencoded } from "express";
+const router = Router();
+import { query } from "../database/connectToDatabase";
 
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
+router.use(json());
+router.use(urlencoded({ extended: true }));
 
 router.get("/user", (req, res) => {
-    connection.query("SELECT * FROM users", (err, result) => {
+    query("SELECT * FROM users", (err, result) => {
         if (err) {
             res.status(500).send("Error retrieving users from database");
         } else {
@@ -17,7 +17,7 @@ router.get("/user", (req, res) => {
 
 router.get("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    connection.query("SELECT * FROM users WHERE id = $1", [id], (err, result) => {
+    query("SELECT * FROM users WHERE id = $1", [id], (err, result) => {
         if (err) {
             res.status(500).send("Error retrieving user from database");
         } else {
@@ -30,14 +30,14 @@ router.post("/user", (req, res) => {
     const { name, email, password } = req.body;
 
     // Check if email already exists in database
-    connection.query("SELECT * FROM users WHERE email = $1", [email], (err, result) => {
+    query("SELECT * FROM users WHERE email = $1", [email], (err, result) => {
         if (err) {
             res.status(500).send("Error checking for existing email");
         } else if (result.rows.length > 0) {
             res.status(400).send("User with this Email already exists");
         } else {
             // Email does not exist, create new user
-            connection.query(
+            query(
                 "INSERT INTO users (name, email, password) VALUES ($1, $2, crypt($3, gen_salt('bf')))",
                 [name, email, password],
                 (err, result) => {
@@ -55,7 +55,7 @@ router.post("/user", (req, res) => {
 router.put("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const { name, email, password } = req.body;
-    connection.query(
+    query(
         "UPDATE users SET name = $1, email = $2, password = crypt($3, gen_salt('bf')) WHERE id = $4",
         [name, email, password, id],
         (err, result) => {
@@ -70,7 +70,7 @@ router.put("/user/:id", (req, res) => {
 
 router.delete("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    connection.query("DELETE FROM users WHERE id = $1", [id], (err, result) => {
+    query("DELETE FROM users WHERE id = $1", [id], (err, result) => {
         if (err) {
             res.status(500).send("Error deleting user");
         } else {
@@ -79,4 +79,4 @@ router.delete("/user/:id", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;
