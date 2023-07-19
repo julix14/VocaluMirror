@@ -79,4 +79,68 @@ router.delete("/user/:id", (req, res) => {
     });
 });
 
+router.get("/user/:id/vocabulary", (req, res) => {
+    const id = parseInt(req.params.id);
+    query(
+        "SELECT v.* FROM vocabulary v JOIN vocabulary_user_mapping m ON v.id = m.vocabulary_id WHERE m.user_id = $1",
+        [id],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error retrieving vocabulary from database");
+            } else {
+                res.status(200).json(result.rows);
+            }
+        }
+    );
+});
+
+router.post("/user/:id/vocabulary", (req, res) => {
+    const userId = parseInt(req.params.id);
+    const { vocabularyId, stage } = req.body;
+    query(
+        "INSERT INTO vocabulary_user_mapping (user_id, vocabulary_id, stage) VALUES ($1, $2, $3)",
+        [userId, vocabularyId, stage],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error saving vocabulary");
+            } else {
+                res.status(200).send("Vocabulary successfully saved" + result.rows);
+            }
+        }
+    );
+});
+
+router.put("/user/:id/vocabulary/:vocabularyId", (req, res) => {
+    const userId = parseInt(req.params.id);
+    const vocabularyId = parseInt(req.params.vocabularyId);
+    const { stage } = req.body;
+    query(
+        "UPDATE vocabulary_user_mapping SET stage = $1, updated_at = CURRENT_TIMESTAMP WHERE user_id = $2 AND vocabulary_id = $3",
+        [stage, userId, vocabularyId],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error updating vocabulary");
+            } else {
+                res.status(200).send("Vocabulary successfully updated" + result.rows);
+            }
+        }
+    );
+});
+
+router.delete("/user/:id/vocabulary/:vocabularyId", (req, res) => {
+    const userId = parseInt(req.params.id);
+    const vocabularyId = parseInt(req.params.vocabularyId);
+    query(
+        "DELETE FROM vocabulary_user_mapping WHERE user_id = $1 AND vocabulary_id = $2",
+        [userId, vocabularyId],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error deleting vocabulary");
+            } else {
+                res.status(200).send("Vocabulary successfully deleted" + result.rows);
+            }
+        }
+    );
+});
+
 export default router;
