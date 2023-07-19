@@ -10,7 +10,7 @@ exports.up = (pgm) => {
         user_id: {
             type: "integer",
             notNull: true,
-            references: "user",
+            references: "users",
             onDelete: "cascade",
         },
         created_at: {
