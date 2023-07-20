@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const { json, urlencoded } = require("body-parser");
-const { query } = require("../database/connectToDatabase");
+const connection = require("../database/connectToDatabase");
 
 router.use(json());
 router.use(urlencoded({ extended: true }));
 
 router.get("/language", (req, res) => {
-    query("SELECT * FROM language", (err, result) => {
+    connection.query("SELECT * FROM language", (err, result) => {
         if (err) {
             res.status(500).send("Error retrieving languages from database");
         } else {
@@ -18,7 +18,7 @@ router.get("/language", (req, res) => {
 
 router.get("/language/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    query("SELECT * FROM language WHERE id = $1", [id], (err, result) => {
+    connection.query("SELECT * FROM language WHERE id = $1", [id], (err, result) => {
         if (err) {
             res.status(500).send("Error retrieving language from database");
         } else {
@@ -31,14 +31,14 @@ router.post("/language", (req, res) => {
     const { name } = req.body;
 
     // Check if language already exists in database
-    query("SELECT * FROM language WHERE name = $1", [name], (err, result) => {
+    connection.query("SELECT * FROM language WHERE name = $1", [name], (err, result) => {
         if (err) {
             res.status(500).send("Error checking for existing language");
         } else if (result.rows.length > 0) {
             res.status(400).send("Language already exists");
         } else {
             // Language does not exist, create new language
-            query("INSERT INTO language (name) VALUES ($1)", [name], (err, result) => {
+            connection.query("INSERT INTO language (name) VALUES ($1)", [name], (err, result) => {
                 if (err) {
                     res.status(500).send("Error saving language");
                 } else {
@@ -52,7 +52,7 @@ router.post("/language", (req, res) => {
 router.put("/language/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const { name } = req.body;
-    query("UPDATE language SET name = $1 WHERE id = $2", [name, id], (err, result) => {
+    connection.query("UPDATE language SET name = $1 WHERE id = $2", [name, id], (err, result) => {
         if (err) {
             res.status(500).send("Error updating language");
         } else {
@@ -63,7 +63,7 @@ router.put("/language/:id", (req, res) => {
 
 router.delete("/language/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    query("DELETE FROM language WHERE id = $1", [id], (err, result) => {
+    connection.query("DELETE FROM language WHERE id = $1", [id], (err, result) => {
         if (err) {
             res.status(500).send("Error deleting language");
         } else {
