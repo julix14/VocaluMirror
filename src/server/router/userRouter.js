@@ -42,7 +42,7 @@ router.post("/user", (req, res) => {
         } else {
             // Email does not exist, create new user
             connection.query(
-                "INSERT INTO users (name, email, password) VALUES ($1, $2, crypt($3, gen_salt('bf')))",
+                "INSERT INTO users (name, email, password) VALUES ($1, $2, $3))",
                 [name, email, password],
                 (err, result) => {
                     if (err) {
@@ -61,7 +61,7 @@ router.put("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const { name, email, password } = req.body;
     connection.query(
-        "UPDATE users SET name = $1, email = $2, password = crypt($3, gen_salt('bf')) WHERE id = $4",
+        "UPDATE users SET name = $1, email = $2, password = $3 WHERE id = $4",
         [name, email, password, id],
         (err, result) => {
             if (err) {
