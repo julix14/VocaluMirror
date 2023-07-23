@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { json, urlencoded } = require("body-parser");
 const connection = require("../database/connectToDatabase");
+const bcrypt = require("bcrypt");
 
 router.use(json());
 router.use(urlencoded({ extended: true }));
@@ -32,7 +33,7 @@ router.get("/user/:id", (req, res) => {
 //Create a new user
 router.post("/user", (req, res) => {
     const { name, email, password } = req.body;
-
+    const encryptedPassword = bcrypt.hashSync(password, 10);
     // Check if email already exists in database
     connection.query("SELECT * FROM users WHERE email = $1", [email], (err, result) => {
         if (err) {
@@ -43,7 +44,7 @@ router.post("/user", (req, res) => {
             // Email does not exist, create new user
             connection.query(
                 "INSERT INTO users (name, email, password) VALUES ($1, $2, $3))",
-                [name, email, password],
+                [name, email, encryptedPassword],
                 (err, result) => {
                     if (err) {
                         res.status(500).send("Error saving user");
