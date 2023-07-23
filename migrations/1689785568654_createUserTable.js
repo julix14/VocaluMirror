@@ -1,6 +1,4 @@
 exports.up = (pgm) => {
-    pgm.createExtension("pgcrypto");
-
     pgm.createTable("users", {
         id: "id",
         name: { type: "varchar(1000)", notNull: true },
@@ -18,5 +16,4 @@ exports.up = (pgm) => {
 
 exports.down = (pgm) => {
     pgm.dropTable("users");
-    pgm.dropExtension("pgcrypto");
 };
