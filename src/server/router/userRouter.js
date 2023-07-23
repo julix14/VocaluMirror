@@ -61,9 +61,11 @@ router.post("/user", (req, res) => {
 router.put("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const { name, email, password } = req.body;
+    const encryptedPassword = bcrypt.hashSync(password, 10);
+
     connection.query(
         "UPDATE users SET name = $1, email = $2, password = $3 WHERE id = $4",
-        [name, email, password, id],
+        [name, email, encryptedPassword, id],
         (err, result) => {
             if (err) {
                 res.status(500).send("Error updating user");
