@@ -6,6 +6,7 @@ const connection = require("../database/connectToDatabase");
 router.use(json());
 router.use(urlencoded({ extended: true }));
 
+//Retrieve all users
 router.get("/user", (req, res) => {
     connection.query("SELECT * FROM users", (err, result) => {
         if (err) {
@@ -16,6 +17,7 @@ router.get("/user", (req, res) => {
     });
 });
 
+//Retrieve a single user by ID
 router.get("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
     connection.query("SELECT * FROM users WHERE id = $1", [id], (err, result) => {
@@ -27,6 +29,7 @@ router.get("/user/:id", (req, res) => {
     });
 });
 
+//Create a new user
 router.post("/user", (req, res) => {
     const { name, email, password } = req.body;
 
@@ -53,6 +56,7 @@ router.post("/user", (req, res) => {
     });
 });
 
+//Update a user
 router.put("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const { name, email, password } = req.body;
@@ -69,6 +73,7 @@ router.put("/user/:id", (req, res) => {
     );
 });
 
+//Delete a user
 router.delete("/user/:id", (req, res) => {
     const id = parseInt(req.params.id);
     connection.query("DELETE FROM users WHERE id = $1", [id], (err, result) => {
@@ -80,8 +85,9 @@ router.delete("/user/:id", (req, res) => {
     });
 });
 
-router.get("/user/:id/vocabulary", (req, res) => {
-    const id = parseInt(req.params.id);
+//Retrieve all vocabulary for a user
+router.get("/user/:userId/vocabulary", (req, res) => {
+    const id = parseInt(req.params.userId);
     connection.query(
         "SELECT v.* FROM vocabulary v JOIN vocabulary_user_mapping m ON v.id = m.vocabulary_id WHERE m.user_id = $1",
         [id],
@@ -95,8 +101,9 @@ router.get("/user/:id/vocabulary", (req, res) => {
     );
 });
 
-router.post("/user/:id/vocabulary", (req, res) => {
-    const userId = parseInt(req.params.id);
+//Map a vocabulary to a user
+router.post("/user/:userId/vocabulary", (req, res) => {
+    const userId = parseInt(req.params.userId);
     const { vocabularyId, stage } = req.body;
     connection.query(
         "INSERT INTO vocabulary_user_mapping (user_id, vocabulary_id, stage) VALUES ($1, $2, $3)",
@@ -111,8 +118,9 @@ router.post("/user/:id/vocabulary", (req, res) => {
     );
 });
 
-router.put("/user/:id/vocabulary/:vocabularyId", (req, res) => {
-    const userId = parseInt(req.params.id);
+//Update User Vocabulary Mapping
+router.put("/user/:userId/vocabulary/:vocabularyId", (req, res) => {
+    const userId = parseInt(req.params.userId);
     const vocabularyId = parseInt(req.params.vocabularyId);
     const { stage } = req.body;
     connection.query(
@@ -128,8 +136,9 @@ router.put("/user/:id/vocabulary/:vocabularyId", (req, res) => {
     );
 });
 
-router.delete("/user/:id/vocabulary/:vocabularyId", (req, res) => {
-    const userId = parseInt(req.params.id);
+//Delete User Vocabulary Mapping
+router.delete("/user/:userId/vocabulary/:vocabularyId", (req, res) => {
+    const userId = parseInt(req.params.userId);
     const vocabularyId = parseInt(req.params.vocabularyId);
     connection.query(
         "DELETE FROM vocabulary_user_mapping WHERE user_id = $1 AND vocabulary_id = $2",
@@ -139,6 +148,73 @@ router.delete("/user/:id/vocabulary/:vocabularyId", (req, res) => {
                 res.status(500).send("Error deleting vocabulary");
             } else {
                 res.status(200).send("Vocabulary successfully deleted" + result.rows);
+            }
+        }
+    );
+});
+
+//Retrieve all flashcards for a user
+router.get("/user/:userId/flashcard", (req, res) => {
+    const id = parseInt(req.params.userId);
+    connection.query(
+        "SELECT f.* FROM flashcard f JOIN flashcard_user_mapping m ON f.id = m.flashcard_id WHERE m.user_id = $1",
+        [id],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error retrieving flashcards from database");
+            } else {
+                res.status(200).json(result.rows);
+            }
+        }
+    );
+});
+
+//Map a flashcard to a user
+router.post("/user/:userId/flashcard", (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const { flashcardId } = req.body;
+    connection.query(
+        "INSERT INTO flashcard_user_mapping (user_id, flashcard_id) VALUES ($1, $2)",
+        [userId, flashcardId],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error saving flashcard");
+            } else {
+                res.status(200).send("Flashcard successfully saved" + result.rows);
+            }
+        }
+    );
+});
+
+// Update User Flashcard Mapping
+router.put("/user/:userId/flashcard/:flashcardId", (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const flashcardId = parseInt(req.params.flashcardId);
+    connection.query(
+        "UPDATE flashcard_user_mapping SET updated_at = CURRENT_TIMESTAMP WHERE user_id = $1 AND flashcard_id = $2",
+        [userId, flashcardId],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error updating flashcard");
+            } else {
+                res.status(200).send("Flashcard successfully updated" + result.rows);
+            }
+        }
+    );
+});
+
+// Delete User Flashcard Mapping
+router.delete("/user/:userId/flashcard/:flashcardId", (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const flashcardId = parseInt(req.params.flashcardId);
+    connection.query(
+        "DELETE FROM flashcard_user_mapping WHERE user_id = $1 AND flashcard_id = $2",
+        [userId, flashcardId],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error deleting flashcard");
+            } else {
+                res.status(200).send("Flashcard successfully deleted" + result.rows);
             }
         }
     );
