@@ -55,7 +55,7 @@ const flashCards = [
     },
     {
         topic: "Listening",
-        question: "Listen to the audio and identify the missing word: 'The ____ is blue.'",
+        question: "Listen to the audio and identify the missing word: 'The _____ is blue.'",
         answer: "sky",
         stage: 1,
     },
