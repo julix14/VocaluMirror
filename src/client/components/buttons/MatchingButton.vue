@@ -1,6 +1,6 @@
 <template>
     <div
-        class="text-4xl w-full text-center p-4 rounded-2xl shadow-2xl transition-all duration-100 ease-in-out"
+        class="text-4xl w-full text-center p-4 rounded-2xl shadow-2xl transition-all duration-100 ease-in-out cursor-pointer"
         :class="[color, selected ? 'shadow-none translate-y-1 selected-shadow' : '']">
         {{ text }}
     </div>
