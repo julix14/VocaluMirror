@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-lightBlue bg-opacity-75 w-screen h-screen flex flex-col justify-start items-center">
+        class="bg-lightBlue bg-opacity-75 w-screen h-fit min-h-screen flex flex-col justify-start items-center">
         <div>
             <p class="text-white text-9xl text-center mt-10 drop-shadow-2xl">Flash Cards</p>
             <p class="text-white text-4xl text-center font-bold mt-4">

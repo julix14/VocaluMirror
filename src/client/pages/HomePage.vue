@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-orange w-screen h-screen flex flex-col justify-start">
+    <div class="bg-orange w-screen h-fit min-h-screen flex flex-col justify-start">
         <div>
             <p class="text-white text-8xl xl:text-9xl text-center mt-10 drop-shadow-2xl">
                 Welcome to Vocalu
