@@ -6,10 +6,20 @@
                 Pick the correct word for the picture
             </p>
         </div>
-        <MatchingButton />
+        <div class="grid grid-cols-2 mx-20 mt-10">
+            <VocaluImage src="https://loremflickr.com/640/640" />
+            <div class="w-full flex flex-col justify-between items-center">
+                <MatchingButton />
+                <MatchingButton />
+                <MatchingButton />
+                <MatchingButton />
+            </div>
+        </div>
+        <div>&nbsp;</div>
     </div>
 </template>
 
 <script setup>
 import MatchingButton from "../components/buttons/MatchingButton.vue";
+import VocaluImage from "../components/vocaluImage.vue";
 </script>
