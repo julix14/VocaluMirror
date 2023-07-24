@@ -13,5 +13,3 @@
 <script setup>
 import MatchingButton from "../components/buttons/MatchingButton.vue";
 </script>
-
-<style scoped></style>

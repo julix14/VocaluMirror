@@ -21,6 +21,7 @@ export const theme = {
             rose: "#FF7D97",
             correctGreen: "#41C503",
             wrongRed: "#FD0000",
+            subHeadingGray: "#535353",
         },
     },
     fontFamily: {
