@@ -8,11 +8,14 @@
         </div>
         <div class="grid grid-cols-2 mx-20 mt-10">
             <VocaluImage src="https://loremflickr.com/640/640" />
-            <div class="w-full flex flex-col justify-between items-center">
-                <MatchingButton />
-                <MatchingButton />
-                <MatchingButton />
-                <MatchingButton />
+            <div class="w-full flex flex-col justify-between items-center" id="answerOptions">
+                <MatchingButton
+                    v-for="(answer, index) in answerOptions"
+                    :key="answer.text"
+                    :text="answer.text"
+                    :selected="answer.selected"
+                    :color="answer.color"
+                    @click="answerSelected(index)" />
             </div>
         </div>
         <div>&nbsp;</div>
@@ -22,4 +25,60 @@
 <script setup>
 import MatchingButton from "../components/buttons/MatchingButton.vue";
 import VocaluImage from "../components/vocaluImage.vue";
+import { ref } from "vue";
+
+const answerOptions = ref([
+    {
+        text: "Possible Answer",
+        selected: false,
+        correct: false,
+        color: "bg-white",
+    },
+    {
+        text: "Possible Answer",
+        selected: false,
+        correct: true,
+        color: "bg-white",
+    },
+    {
+        text: "Possible Answer",
+        selected: false,
+        correct: false,
+        color: "bg-white",
+    },
+    {
+        text: "Possible Answer",
+        selected: false,
+        correct: false,
+        color: "bg-white",
+    },
+]);
+
+function answerSelected(index) {
+    changeColors();
+    answerOptions.value[index].selected = true;
+    if (answerOptions.value[index].correct) {
+        console.log("Correct Answer");
+    } else {
+        console.log("Incorrect Answer");
+    }
+}
+
+function changeColors() {
+    answerOptions.value.map((answer) => {
+        console.log(answer);
+        console.log(answer.correct);
+        if (answer.correct === true) {
+            answer.color = "bg-correctGreen";
+        } else {
+            answer.color = "bg-wrongRed";
+        }
+    });
+}
 </script>
+
+<style scoped>
+#answerOptions > :not(.bg-correctGreen):not(.selected-shadow):not(.bg-white) {
+    opacity: 0.5;
+}
+</style>
