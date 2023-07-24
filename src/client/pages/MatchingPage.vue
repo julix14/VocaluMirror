@@ -1,29 +1,17 @@
-
 <template>
-  <div>
-    <h1>Welcome to the Matching Page!</h1>
-    <p>{{ message }}</p>
-    <button @click="updateMessage">Update Message</button>
-  </div>
+    <div class="h-fit min-h-screen w-screen bg-rose opacity-75 pt-10">
+        <div>
+            <p class="text-white text-8xl xl:text-9xl text-center drop-shadow-2xl">Matching</p>
+            <p class="text-subHeadingGray text-3xl xl:text-4xl text-center mt-4">
+                Pick the correct word for the picture
+            </p>
+        </div>
+        <MatchingButton />
+    </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            message: "Initial message"
-        };
-    },
-    methods: {
-        updateMessage() {
-            this.message = "Updated message";
-        }
-    }
-};
+<script setup>
+import MatchingButton from "../components/buttons/MatchingButton.vue";
 </script>
 
-<style scoped>
-h1 {
-  color: blue;
-}
-</style>
+<style scoped></style>
