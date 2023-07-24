@@ -1,13 +1,13 @@
 <template>
     <div class="h-fit min-h-screen w-screen bg-rose opacity-75 pt-10">
         <div>
-            <p class="text-white text-8xl xl:text-9xl text-center drop-shadow-2xl">Matching</p>
-            <p class="text-subHeadingGray text-3xl xl:text-4xl text-center mt-4">
+            <p class="text-white text-8xl text-center drop-shadow-2xl">Matching</p>
+            <p class="text-subHeadingGray text-3xl text-center mt-4">
                 Pick the correct word for the picture
             </p>
         </div>
-        <div class="grid grid-cols-2 mx-20 mt-10">
-            <VocaluImage src="https://loremflickr.com/640/640" />
+        <div class="grid grid-cols-2 mx-20 p-20 gap-x-10">
+            <VocaluImage src="https://loremflickr.com/1230/640" class="place-self-center" />
             <div class="w-full flex flex-col justify-between items-center" id="answerOptions">
                 <MatchingButton
                     v-for="(answer, index) in answerOptions"
@@ -15,7 +15,8 @@
                     :text="answer.text"
                     :selected="answer.selected"
                     :color="answer.color"
-                    @click="answerSelected(index)" />
+                    @click="answerSelected(index)"
+                    class="my-4" />
             </div>
         </div>
         <div>&nbsp;</div>
@@ -29,25 +30,25 @@ import { ref } from "vue";
 
 const answerOptions = ref([
     {
-        text: "Possible Answer",
+        text: "Answer 1",
         selected: false,
         correct: false,
         color: "bg-white",
     },
     {
-        text: "Possible Answer",
+        text: "Right",
         selected: false,
         correct: true,
         color: "bg-white",
     },
     {
-        text: "Possible Answer",
+        text: "Wrong Answer",
         selected: false,
         correct: false,
         color: "bg-white",
     },
     {
-        text: "Possible Answer",
+        text: "Wrong Answer",
         selected: false,
         correct: false,
         color: "bg-white",
