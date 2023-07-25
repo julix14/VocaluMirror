@@ -1,8 +1,8 @@
 exports.up = (pgm) => {
     pgm.createTable("flash_card", {
         id: "id",
-        question: { type: "varchar(1000)", notNull: true },
-        answer: { type: "varchar(1000)", notNull: true },
+        question: { type: "text", notNull: true },
+        answer: { type: "text", notNull: true },
         created_at: {
             type: "timestamp",
             notNull: true,
