@@ -18,7 +18,8 @@
         "pg": "^8.11.1",
         "vite-express": "*",
         "vue": "^3.2.45",
-        "vue-router": "^4.2.2"
+        "vue-router": "^4.2.2",
+        "vue-spinner": "^1.0.4"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.0.0",

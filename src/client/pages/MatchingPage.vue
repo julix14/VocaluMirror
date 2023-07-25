@@ -7,7 +7,7 @@
             </p>
         </div>
         <div class="grid grid-cols-2 m-auto p-20 gap-x-10 w-2/3">
-            <VocaluImage src="https://loremflickr.com/1230/640" class="place-self-center" />
+            <VocaluImage :src="rawVocabulary[0].img_url" class="place-self-center" />
             <div class="w-full flex flex-col justify-between items-center" id="answerOptions">
                 <MatchingButton
                     v-for="(answer, index) in answerOptions"
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="w-2/3 mx-auto">
-            <p class="text-white text-3xl text-center">Score: {{ data }}</p>
+            <p class="text-white text-3xl text-center">Score: {{ score }}</p>
             <MatchingButton text="Next" color="bg-white" class="m-auto" />
         </div>
     </div>
@@ -38,33 +38,33 @@ const props = defineProps({
     },
 });
 
-const rawVocabulary = ref(props.data);
+const score = ref(0);
 
-rawVocabulary.value.forEach((word) => {
-    console.log(word);
-});
+const rawVocabulary = ref(props.data);
+console.log(rawVocabulary.value[0].img_url);
+let wrongWords = ref(rawVocabulary.value[0].wrong_word.split(","));
 
 const answerOptions = ref([
     {
-        text: "Answer 1",
-        selected: false,
-        correct: false,
-        color: "bg-white",
-    },
-    {
-        text: "Right",
+        text: rawVocabulary.value[0].correct_word,
         selected: false,
         correct: true,
         color: "bg-white",
     },
     {
-        text: "Wrong Answer",
+        text: wrongWords.value[0],
         selected: false,
         correct: false,
         color: "bg-white",
     },
     {
-        text: "Wrong Answer",
+        text: wrongWords.value[1],
+        selected: false,
+        correct: false,
+        color: "bg-white",
+    },
+    {
+        text: wrongWords.value[2],
         selected: false,
         correct: false,
         color: "bg-white",
