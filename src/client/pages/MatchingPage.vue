@@ -28,7 +28,7 @@
 
 <script setup>
 import MatchingButton from "../components/buttons/MatchingButton.vue";
-import VocaluImage from "../components/vocaluImage.vue";
+import VocaluImage from "../components/VocaluImage.vue";
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
