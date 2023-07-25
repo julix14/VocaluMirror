@@ -29,7 +29,8 @@
 <script setup>
 import MatchingButton from "../components/buttons/MatchingButton.vue";
 import VocaluImage from "../components/vocaluImage.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import axios from "axios";
 
 const props = defineProps({
     data: {
@@ -38,10 +39,19 @@ const props = defineProps({
     },
 });
 
+onMounted(() => {
+    loadScore();
+});
+
 const score = ref(0);
 
+function loadScore() {
+    axios.get(`user/${import.meta.env.VITE_APP_USER_ID}/score`).then((res) => {
+        score.value = res.data[0].matching_score;
+    });
+}
+
 const rawVocabulary = ref(props.data);
-console.log(rawVocabulary.value[0].img_url);
 let wrongWords = ref(rawVocabulary.value[0].wrong_word.split(","));
 
 const answerOptions = ref([
@@ -70,6 +80,22 @@ const answerOptions = ref([
         color: "bg-white",
     },
 ]);
+
+answerOptions.value = shuffle(answerOptions.value);
+
+function shuffle(array) {
+    let currentIndex = array.length,
+        randomIndex;
+
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
 
 function answerSelected(index) {
     changeColors();
