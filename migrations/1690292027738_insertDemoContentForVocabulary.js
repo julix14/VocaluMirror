@@ -30,6 +30,12 @@ exports.up = (pgm) => {
       ('Lizard', 'Eidechse', 1, 2, 'https://loremflickr.com/640/640/Lizard', NOW()),
       ('Crocodile', 'Krokodil', 1, 2, 'https://loremflickr.com/640/640/Crocodile', NOW());
     `);
+
+    pgm.sql(`
+    INSERT INTO users (name ,email, password)
+    VALUES
+      ('testuser', 'user@example.com', '$2b$10$Pi/jgbwVaOOqfkPs/vmtp.M7oo/E0X8KwkgbTa.x0OfwCZ/s8Tc.y');
+    `);
 };
 
 exports.down = (pgm) => {
@@ -39,5 +45,9 @@ exports.down = (pgm) => {
 
     pgm.sql(`
     TRUNCATE TABLE language CASCADE;
+    `);
+
+    pgm.sql(`
+    TRUNCATE TABLE users CASCADE;
     `);
 };
