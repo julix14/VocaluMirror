@@ -8,7 +8,7 @@
             </p>
         </div>
         <div class="grid grid-cols-2 m-auto p-20 gap-x-12 w-2/3">
-            <VocaluImage :src="rawVocabulary[0].img_url" class="place-self-center" />
+            <VocaluImage :src="correctWordImage" class="place-self-center" />
             <div class="w-full flex flex-col justify-between items-center" id="answerOptions">
                 <MatchingButton
                     v-for="(answer, index) in answerOptions"
@@ -147,7 +147,7 @@ function changeColors() {
 
 let temporaryWords;
 // Get called when an option is selected
-function answerSelected(index) {
+async function answerSelected(index) {
     // Change the colors to green and red
     changeColors();
 
@@ -165,7 +165,7 @@ function answerSelected(index) {
     }
 
     // Load the new words to reduce waiting time
-    temporaryWords = loadNewWords();
+    temporaryWords = await loadNewWords();
 }
 
 function selectedIsCorrect() {
@@ -181,16 +181,14 @@ function selectedIsWrong() {
 }
 
 // Reset the options and load new words
-function loadNewWords() {
-    const newWords = [];
-
-    // Get the new words from the database
-    axios
-        .get(`${import.meta.env.VITE_APP_URL}/matchingwords`)
-        .then((response) => (newWords[0] = response.data))
-        .catch((error) => console.log(error));
-
-    return newWords;
+async function loadNewWords() {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_APP_URL}/matchingwords`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 // Gets called when the next button in the modal is pressed
@@ -200,7 +198,7 @@ function nextQuestion() {
     correctGuess.value = false;
 
     // Set the new words to the answer options and display them
-    answerOptions.value = rawVocabularyToAnswers(temporaryWords);
+    answerOptions.value = rawVocabularyToAnswers(temporaryWords[0]);
 }
 </script>
 
