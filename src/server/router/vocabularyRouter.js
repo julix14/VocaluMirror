@@ -16,6 +16,16 @@ router.get("/vocabulary", (req, res) => {
     });
 });
 
+//Route for matching game vocabulary
+router.get("/matching", (req, res) => {
+    connection.query("SELECT * FROM matching_game_view", (err, result) => {
+        if (err) {
+            res.status(500).send("Error retrieving vocabulary from database");
+        }
+        res.status(200).json(result.rows);
+    });
+});
+
 router.get("/vocabulary/:id", (req, res) => {
     const id = parseInt(req.params.id);
     connection.query("SELECT * FROM vocabulary WHERE id = $1", [id], (err, result) => {
