@@ -72,7 +72,7 @@ router.post("/user", (req, res) => {
         } else {
             // Email does not exist, create new user
             connection.query(
-                "INSERT INTO users (name, email, password) VALUES ($1, $2, $3))",
+                "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
                 [name, email, encryptedPassword],
                 (err, result) => {
                     if (err) {
