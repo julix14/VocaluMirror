@@ -1,12 +1,12 @@
 <template>
-    <div class="h-fit min-h-screen w-screen bg-rose opacity-75 pt-10">
+    <div class="h-fit min-h-screen w-screen bg-rose opacity-75 pt-10 flex flex-col justify-between">
         <div>
             <p class="text-white text-8xl text-center drop-shadow-2xl">Matching</p>
             <p class="text-subHeadingGray text-3xl text-center mt-4">
                 Pick the correct word for the picture
             </p>
         </div>
-        <div class="grid grid-cols-2 mx-20 p-20 gap-x-10">
+        <div class="grid grid-cols-2 m-auto p-20 gap-x-10 w-2/3">
             <VocaluImage src="https://loremflickr.com/1230/640" class="place-self-center" />
             <div class="w-full flex flex-col justify-between items-center" id="answerOptions">
                 <MatchingButton
@@ -19,7 +19,10 @@
                     class="my-4" />
             </div>
         </div>
-        <div>&nbsp;</div>
+        <div class="w-2/3 mx-auto">
+            <p class="text-white text-3xl text-center">Score: {{ data }}</p>
+            <MatchingButton text="Next" color="bg-white" class="m-auto" />
+        </div>
     </div>
 </template>
 
@@ -27,6 +30,19 @@
 import MatchingButton from "../components/buttons/MatchingButton.vue";
 import VocaluImage from "../components/vocaluImage.vue";
 import { ref } from "vue";
+
+const props = defineProps({
+    data: {
+        type: Object,
+        required: true,
+    },
+});
+
+const rawVocabulary = ref(props.data);
+
+rawVocabulary.value.forEach((word) => {
+    console.log(word);
+});
 
 const answerOptions = ref([
     {
