@@ -23,7 +23,7 @@ exports.up = (pgm) => {
       ('Shark', 'Hai', 1, 2, 'https://loremflickr.com/640/640/Shark', NOW()),
       ('Koala', 'Koala', 1, 2, 'https://loremflickr.com/640/640/Koala', NOW()),
       ('Panda', 'Panda', 1, 2, 'https://loremflickr.com/640/640/Panda', NOW()),
-      ('Polar Bear', 'Eisbär', 1, 2, 'https://loremflickr.com/640/640/Polar%20Bear', NOW()),
+      ('Polar Bear', 'Eisbär', 1, 2, 'https://loremflickr.com/640/640/PolarBear', NOW()),
       ('Rabbit', 'Kaninchen', 1, 2, 'https://loremflickr.com/640/640/Rabbit', NOW()),
       ('Turtle', 'Schildkröte', 1, 2, 'https://loremflickr.com/640/640/Turtle', NOW()),
       ('Koala', 'Koala', 1, 2, 'https://loremflickr.com/640/640/Koala', NOW()),
