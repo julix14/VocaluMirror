@@ -32,7 +32,7 @@ router.post("/vocabulary", (req, res) => {
 
     // Check if word already exists in database
     connection.query(
-        "SELECT * FROM vocabulary WHERE word = $1 AND WHERE language_id = $2",
+        "SELECT * FROM vocabulary WHERE word = $1 AND language_id = $2",
         [word, languageId],
         (err, result) => {
             if (err) {
