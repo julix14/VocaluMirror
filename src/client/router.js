@@ -15,7 +15,7 @@ const router = createRouter({
             component: MatchingPage,
             beforeEnter: (to, from, next) => {
                 axios
-                    .get(`${import.meta.env.VITE_APP_URL}/matching`)
+                    .get(`${import.meta.env.VITE_APP_URL}/matchingwords`)
                     .then((response) => {
                         to.params.data = response.data;
                         next();

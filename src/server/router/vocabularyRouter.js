@@ -17,7 +17,7 @@ router.get("/vocabulary", (req, res) => {
 });
 
 //Route for matching game vocabulary
-router.get("/matching", (req, res) => {
+router.get("/matchingwords", (req, res) => {
     connection.query("SELECT * FROM matching_game_view", (err, result) => {
         if (err) {
             res.status(500).send("Error retrieving vocabulary from database");
