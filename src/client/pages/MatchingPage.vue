@@ -1,6 +1,7 @@
 <template>
     <div
         class="h-fit min-h-screen w-screen bg-rose opacity-75 pt-10 flex flex-col justify-between overflow-hidden">
+        <HomeButton />
         <div>
             <p class="text-white text-8xl text-center drop-shadow-2xl">Matching</p>
             <p class="text-subHeadingGray text-3xl text-center mt-4">
@@ -36,6 +37,7 @@
 import MatchingButton from "../components/buttons/MatchingButton.vue";
 import VocaluImage from "../components/VocaluMatchingImage.vue";
 import VocaluModal from "../components/VocaluModal.vue";
+import HomeButton from "../components/buttons/HomeButton.vue";
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
