@@ -3,7 +3,7 @@
         <div v-show="imageLoaded">
             <img
                 :src="src"
-                class="rounded-2xl drop-shadow-lg object-contain border-collapse border-solid border-white border-8"
+                class="rounded-2xl drop-shadow-lg object-contain border-solid border-white border-8"
                 @load="onImageLoad" />
         </div>
         <div v-show="!imageLoaded">
