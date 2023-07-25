@@ -11,7 +11,7 @@
             </div>
             <div v-else>
                 <p class="text-4xl font-black text-center drop-shadow-2xl">Sorry! 😢</p>
-                <p class="text-2xl font-bold text-center mt-2 drop-shadow-2xl">You lost 1 Point</p>
+                <p class="text-2xl font-bold text-center mt-2 drop-shadow-2xl">You lost 5 Points</p>
             </div>
             <MatchingButton
                 text="Next"

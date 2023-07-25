@@ -65,7 +65,6 @@ function updateScore() {
             matchingScore: score.value,
         })
         .catch((err) => console.log(err));
-    loadScore();
 }
 
 // Vocabulary & Answer Options
@@ -170,12 +169,14 @@ async function answerSelected(index) {
 
 function selectedIsCorrect() {
     score.value += 5;
+    console.log(score.value);
     updateScore();
     correctGuess.value = true;
 }
 
 function selectedIsWrong() {
-    score.value--;
+    score.value -= 5;
+    console.log(score.value);
     updateScore();
     correctGuess.value = false;
 }
