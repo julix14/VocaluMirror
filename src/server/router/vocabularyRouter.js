@@ -16,6 +16,16 @@ router.get("/vocabulary", (req, res) => {
     });
 });
 
+//Route for matching game vocabulary
+router.get("/matchingwords", (req, res) => {
+    connection.query("SELECT * FROM matching_game_view", (err, result) => {
+        if (err) {
+            res.status(500).send("Error retrieving vocabulary from database");
+        }
+        res.status(200).json(result.rows);
+    });
+});
+
 router.get("/vocabulary/:id", (req, res) => {
     const id = parseInt(req.params.id);
     connection.query("SELECT * FROM vocabulary WHERE id = $1", [id], (err, result) => {
@@ -32,7 +42,7 @@ router.post("/vocabulary", (req, res) => {
 
     // Check if word already exists in database
     connection.query(
-        "SELECT * FROM vocabulary WHERE word = $1 AND WHERE language_id = $2",
+        "SELECT * FROM vocabulary WHERE word = $1 AND language_id = $2",
         [word, languageId],
         (err, result) => {
             if (err) {

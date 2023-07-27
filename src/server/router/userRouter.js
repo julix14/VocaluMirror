@@ -30,6 +30,35 @@ router.get("/user/:id", (req, res) => {
     });
 });
 
+//Retrieve a matching score for a single user by ID
+router.get("/user/:id/score", (req, res) => {
+    const id = parseInt(req.params.id);
+    connection.query("SELECT matching_score FROM users WHERE id = $1", [id], (err, result) => {
+        if (err) {
+            res.status(500).send("Error retrieving user from database");
+        } else {
+            res.status(200).json(result.rows);
+        }
+    });
+});
+
+//Update a matching score for a single user by ID
+router.put("/user/:id/score", (req, res) => {
+    const id = parseInt(req.params.id);
+    const { matchingScore } = req.body;
+    connection.query(
+        "UPDATE users SET matching_score = $1 WHERE id = $2",
+        [matchingScore, id],
+        (err, result) => {
+            if (err) {
+                res.status(500).send("Error updating user");
+            } else {
+                res.status(200).send("User successfully updated" + result.rows);
+            }
+        }
+    );
+});
+
 //Create a new user
 router.post("/user", (req, res) => {
     const { name, email, password } = req.body;
@@ -43,7 +72,7 @@ router.post("/user", (req, res) => {
         } else {
             // Email does not exist, create new user
             connection.query(
-                "INSERT INTO users (name, email, password) VALUES ($1, $2, $3))",
+                "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
                 [name, email, encryptedPassword],
                 (err, result) => {
                     if (err) {

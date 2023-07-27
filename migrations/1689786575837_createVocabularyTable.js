@@ -1,9 +1,15 @@
 exports.up = (pgm) => {
     pgm.createTable("vocabulary", {
         id: "id",
-        word: { type: "varchar(1000)", notNull: true },
-        meaning: { type: "varchar(1000)", notNull: true },
-        language_id: {
+        word: { type: "text", notNull: true },
+        meaning: { type: "text", notNull: true },
+        word_language_id: {
+            type: "integer",
+            notNull: true,
+            references: "language",
+            onDelete: "cascade",
+        },
+        meaning_language_id: {
             type: "integer",
             notNull: true,
             references: "language",
