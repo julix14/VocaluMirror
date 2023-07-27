@@ -12,7 +12,7 @@ const router = createRouter({
             path: "/", 
             component: HomePage,
             meta: {
-                title: "Home Page",
+                title: "Vocalu - Home",
             }, 
         },
 
@@ -20,7 +20,7 @@ const router = createRouter({
             path: "/battle", 
             component: BattlePage,
             meta: {
-                title: "Battle Page",
+                title: "Vocalu - Battle",
             },
     
         },
@@ -42,21 +42,21 @@ const router = createRouter({
             props: true,
 
             meta: {
-                title: "Matching Page",
+                title: "Vocalu - Matching",
             },
         },
         { 
             path: "/flash-cards", 
             component: FlashCardsPage, 
             meta: {
-                title: "Flashcards Page",
+                title: "Vocalu - Flashcards",
             },
         },
     ],
 });
 
 router.beforeEach((to) => {
-    document.title = to.meta?.title ?? "Default Title";
+    document.title = to.meta?.title ?? "Vocalu";
 });
 
 export default router;
