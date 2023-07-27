@@ -8,8 +8,22 @@ import axios from "axios";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: "/", component: HomePage },
-        { path: "/battle", component: BattlePage },
+        { 
+            path: "/", 
+            component: HomePage,
+            meta: {
+                title: "Home",
+            }, 
+        },
+
+        { 
+            path: "/battle", 
+            component: BattlePage,
+            meta: {
+                title: "Battle",
+            },
+    
+        },
         {
             path: "/matching",
             component: MatchingPage,
@@ -26,9 +40,23 @@ const router = createRouter({
                     });
             },
             props: true,
+
+            meta: {
+                title: "Matching",
+            },
         },
-        { path: "/flash-cards", component: FlashCardsPage },
+        { 
+            path: "/flash-cards", 
+            component: FlashCardsPage, 
+            meta: {
+                title: "Flashcards",
+            },
+        },
     ],
+});
+
+router.beforeEach((to) => {
+    document.title = "Vocalu - " + to.meta?.title ?? "Vocalu";
 });
 
 export default router;
