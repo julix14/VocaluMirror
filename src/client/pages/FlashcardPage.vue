@@ -11,7 +11,8 @@
         </div>
         <FlashCard
             :flash-card="props.data[counter]"
-            :buttons-enabled="counter < props.data.length" />
+            :buttons-enabled="counter < props.data.length - 1"
+            @nextCard="counter++" />
     </div>
 </template>
 
@@ -27,4 +28,5 @@ const props = defineProps({
 
 console.log(props.data.length);
 const counter = ref(0);
+console.log(counter.value);
 </script>

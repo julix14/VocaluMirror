@@ -55,6 +55,12 @@ const router = createRouter({
                         }/flashcard`
                     )
                     .then((response) => {
+                        response.data.push({
+                            id: 1,
+                            question: "You solved all flashcards!",
+                            answer: " ",
+                            stage: 1,
+                        });
                         to.params.data = response.data;
                         next();
                     })
