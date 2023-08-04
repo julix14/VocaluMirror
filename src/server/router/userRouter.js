@@ -171,14 +171,26 @@ router.delete("/user/:userId/vocabulary/:vocabularyId", (req, res) => {
 //Retrieve all flashcards for a user
 router.get("/user/:userId/flashcard", (req, res) => {
     const id = parseInt(req.params.userId);
-    prisma.flashcardOnUser
-        .findMany({ where: { user_id: id }, include: { flashcard: true } })
-        .then((result) => {
-            res.status(200).json(result.flashcard);
-        })
-        .catch((err) => {
-            res.status(500).send("Error retrieving flashcards from database" + err);
-        });
+    prisma.user.findUnique({ where: { id: id } }).then((user) => {
+        if (!user) {
+            res.status(404).send("User not found");
+            return;
+        }
+
+        prisma.flashcardOnUser
+            .findMany({
+                where: { user_id: id },
+                select: { flashcard: true },
+            })
+            .then((result) => {
+                const flashcards = result.map((item) => item.flashcard);
+
+                res.status(200).json(flashcards);
+            })
+            .catch((err) => {
+                res.status(500).send("Error retrieving flashcards from database" + err);
+            });
+    });
 });
 
 //Map a flashcard to a user

@@ -6,7 +6,9 @@
         leave-from-class="rotate-y-0"
         leave-to-class="rotate-y-180 hidden"
         leave-active-class="transition-transform duration-500 ">
-        <div v-if="!showBackside" class="bg-white rounded-3xl w-1/2 h-1/2 mt-5 p-6 drop-shadow-2xl">
+        <div
+            v-if="!showBackside"
+            class="bg-white rounded-3xl w-1/2 h-1/2 max-h-1/2 mt-5 p-6 drop-shadow-2xl">
             <div class="h-full flex flex-col justify-between">
                 <div class="grid grid-cols-3 p-2">
                     <p class="text-xl justify-self-start">{{ flashCard.topic }}</p>
@@ -16,7 +18,7 @@
                 </div>
                 <p class="text-3xl p-2 text-center">{{ flashCard.question }}</p>
 
-                <div class="flex justify-end">
+                <div class="flex justify-end" v-if="buttonsEnabled">
                     <FlashCardButton
                         type="turn"
                         text="Solution"
@@ -44,8 +46,16 @@
                 <p class="text-3xl p-2 text-center font-bold">{{ flashCard.question }}</p>
                 <p class="text-3xl p-2 text-center">{{ flashCard.answer }}</p>
                 <div class="flex justify-between p-2">
-                    <FlashCardButton type="correct" text="Correct" icon="flashcards/check.png" />
-                    <FlashCardButton type="wrong" text="Wrong" icon="flashcards/cross.png" />
+                    <FlashCardButton
+                        type="correct"
+                        text="Correct"
+                        icon="flashcards/check.png"
+                        @click="correctGuess" />
+                    <FlashCardButton
+                        type="wrong"
+                        text="Wrong"
+                        icon="flashcards/cross.png"
+                        @click="wrongGuess" />
                 </div>
             </div>
         </div>
@@ -61,9 +71,33 @@ defineProps({
         type: Object,
         required: true,
     },
+    buttonsEnabled: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const showBackside = ref(false);
+
+function correctGuess() {
+    console.log("correct");
+    //Implement stage change
+    showBackside.value = false;
+    nextCard();
+}
+
+function wrongGuess() {
+    console.log("wrong");
+    //Implement stage change
+    showBackside.value = false;
+    nextCard();
+}
+
+const emit = defineEmits(["nextCard"]);
+
+function nextCard() {
+    emit("nextCard");
+}
 </script>
 
 <style scoped>

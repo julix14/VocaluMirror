@@ -14,7 +14,7 @@
             <MenuButton
                 title="Flash Cards"
                 img-path="home/flash-card-img.png"
-                route="/flash-cards" />
+                route="/flashcards" />
         </div>
     </div>
 </template>
