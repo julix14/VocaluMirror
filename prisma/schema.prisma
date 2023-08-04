@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int          @id @default(autoincrement())
+  email          String       @unique
+  name           String?
+  password       String
+  vocabularies   Vocabulary[]
+  flashcards     FlashCard[]
+  matching_score Int          @default(0)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Vocabulary {
+  id                  Int      @id @default(autoincrement())
+  word                String
+  meaning             String
+  word_language_id    Int
+  word_language       Language @relation(name: "word_language", fields: [word_language_id], references: [id])
+  meaning_language_id Int
+  meaning_language    Language @relation(name: "meaning_language", fields: [meaning_language_id], references: [id])
+  user_id             Int
+  user                User     @relation(fields: [user_id], references: [id])
+  image_url           String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model FlashCard {
+  id          Int      @id @default(autoincrement())
+  question    String
+  answer      String
+  language    Language @relation(fields: [language_id], references: [id])
+  language_id Int
+  user        User     @relation(fields: [user_id], references: [id])
+  user_id     Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Language {
+  id                 Int          @id @default(autoincrement())
+  name               String
+  flashcards         FlashCard[]
+  word_vocabulary    Vocabulary[] @relation(name: "word_language")
+  meaning_vocabulary Vocabulary[] @relation(name: "meaning_language")
+}
