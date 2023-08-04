@@ -73,8 +73,8 @@ model Language {
   word_vocabulary    Vocabulary[] @relation("word_language")
 }
 
-view Matching_game_words {
-  id               Int     @id
+view matching_game_view {
+  id               String  @id
   correct_word     String?
   correct_meaning  String?
   img_url          String?

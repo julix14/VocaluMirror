@@ -19,10 +19,10 @@ router.get("/vocabulary", (req, res) => {
 
 //Route for matching game vocabulary
 router.get("/matchingwords", (req, res) => {
-    prisma.matching_game_words
+    prisma.matching_game_view
         .findFirst()
         .then((result) => {
-            res.status(200).json(result.rows);
+            res.status(200).json(result);
         })
         .catch((err) => {
             res.status(500).send("Error retrieving vocabulary from database" + err);

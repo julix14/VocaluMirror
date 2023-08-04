@@ -57,7 +57,7 @@ const score = ref(0);
 
 function loadScore() {
     axios.get(`user/${import.meta.env.VITE_APP_USER_ID}/score`).then((res) => {
-        score.value = res.data[0].matching_score;
+        score.value = res.data.matching_score;
     });
 }
 
@@ -74,10 +74,10 @@ function updateScore() {
 const rawVocabulary = ref(props.data);
 
 // Img default set to the first word set
-const correctWordImage = ref(rawVocabulary.value[0].img_url);
+const correctWordImage = ref(rawVocabulary.value.img_url);
 
 // Answers set to the first word set
-const answerOptions = ref(rawVocabularyToAnswers(rawVocabulary.value[0]));
+const answerOptions = ref(rawVocabularyToAnswers(rawVocabulary.value));
 
 // Convert the raw data from the database to the answer options
 function rawVocabularyToAnswers(data) {
@@ -171,14 +171,12 @@ async function answerSelected(index) {
 
 function selectedIsCorrect() {
     score.value += 5;
-    console.log(score.value);
     updateScore();
     correctGuess.value = true;
 }
 
 function selectedIsWrong() {
     score.value -= 5;
-    console.log(score.value);
     updateScore();
     correctGuess.value = false;
 }
@@ -201,7 +199,7 @@ function nextQuestion() {
     correctGuess.value = false;
 
     // Set the new words to the answer options and display them
-    answerOptions.value = rawVocabularyToAnswers(temporaryWords[0]);
+    answerOptions.value = rawVocabularyToAnswers(temporaryWords);
 }
 </script>
 
