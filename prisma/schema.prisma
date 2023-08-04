@@ -1,0 +1,83 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int                @id @default(autoincrement())
+  email          String             @unique
+  name           String?
+  password       String
+  matching_score Int                @default(0)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  flashcards     FlashcardOnUser[]
+  vocabularies   VocabularyOnUser[]
+}
+
+model Vocabulary {
+  id                  Int                @id @default(autoincrement())
+  word                String
+  meaning             String
+  word_language_id    Int
+  meaning_language_id Int
+  image_url           String?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  meaning_language    Language           @relation("meaning_language", fields: [meaning_language_id], references: [id])
+  word_language       Language           @relation("word_language", fields: [word_language_id], references: [id])
+  user                VocabularyOnUser[]
+}
+
+model VocabularyOnUser {
+  id            Int        @id @default(autoincrement())
+  user_id       Int
+  vocabulary_id Int
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  user          User       @relation(fields: [user_id], references: [id])
+  vocabulary    Vocabulary @relation(fields: [vocabulary_id], references: [id])
+}
+
+model Flashcard {
+  id          Int               @id @default(autoincrement())
+  question    String            @unique
+  answer      String
+  language_id Int
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  language    Language          @relation(fields: [language_id], references: [id])
+  user        FlashcardOnUser[]
+}
+
+model FlashcardOnUser {
+  id           Int       @id @default(autoincrement())
+  user_id      Int
+  flashcard_id Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  flashcard    Flashcard @relation(fields: [flashcard_id], references: [id])
+  user         User      @relation(fields: [user_id], references: [id])
+}
+
+model Language {
+  id                 Int          @id @default(autoincrement())
+  name               String       @unique
+  flashcard          Flashcard[]
+  meaning_vocabulary Vocabulary[] @relation("meaning_language")
+  word_vocabulary    Vocabulary[] @relation("word_language")
+}
+
+view matching_game_view {
+  id               String  @id
+  correct_word     String?
+  correct_meaning  String?
+  img_url          String?
+  word_language_id Int?
+  wrong_word       String?
+}

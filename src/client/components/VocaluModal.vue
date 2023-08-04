@@ -24,8 +24,7 @@
 
 <script setup>
 import MatchingButton from "./buttons/MatchingButton.vue";
-import { defineProps } from "vue";
-import { defineEmits } from "vue";
+
 defineProps({
     isCorrect: {
         type: Boolean,
