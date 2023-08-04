@@ -16,7 +16,7 @@
                 </div>
                 <p class="text-3xl p-2 text-center">{{ flashCard.question }}</p>
 
-                <div class="flex justify-end">
+                <div class="flex justify-end" v-if="buttonsEnabled">
                     <FlashCardButton
                         type="turn"
                         text="Solution"
@@ -60,6 +60,10 @@ defineProps({
     flashCard: {
         type: Object,
         required: true,
+    },
+    buttonsEnabled: {
+        type: Boolean,
+        default: false,
     },
 });
 
