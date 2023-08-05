@@ -46,6 +46,7 @@ model VocabularyOnUser {
 
 model Flashcard {
   id          Int               @id @default(autoincrement())
+  topic       String            @default("General")
   question    String            @unique
   answer      String
   language_id Int
