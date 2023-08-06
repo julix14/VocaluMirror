@@ -2,7 +2,7 @@
     <div>
         <div v-show="imageLoaded">
             <img
-                :src="src"
+                :src="props.src"
                 class="rounded-2xl drop-shadow-lg object-contain border-solid border-white border-8"
                 @load="onImageLoad" />
         </div>
@@ -13,20 +13,27 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
-defineProps({
+const props = defineProps({
     src: {
         type: String,
         required: true,
     },
 });
 
+watch(
+    () => props.src,
+    () => {
+        console.log("image changed");
+        imageLoaded.value = false;
+    }
+);
+
 const imageLoaded = ref(false);
 
 function onImageLoad() {
-    console;
     imageLoaded.value = true;
 }
 </script>

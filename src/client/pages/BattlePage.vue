@@ -1,29 +1,6 @@
-
 <template>
-  <div>
-    <h1>Welcome to the Battle Page!</h1>
-    <p>{{ message }}</p>
-    <button @click="updateMessage">Update Message</button>
-  </div>
+    <div
+        class="bg-lightBlue bg-opacity-75 w-screen h-fit min-h-screen flex flex-col justify-start items-center"></div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            message: "Initial message"
-        };
-    },
-    methods: {
-        updateMessage() {
-            this.message = "Updated message";
-        }
-    }
-};
-</script>
-
-<style scoped>
-h1 {
-  color: blue;
-}
-</style>
+<script setup></script>
