@@ -19,6 +19,7 @@ export const theme = {
             orange: "#FF862E",
             lightBlue: "#7AD0DF",
             rose: "#FF7D97",
+            yellow: "#FFDC00",
             correctGreen: "#41C503",
             wrongRed: "#FD0000",
             subHeadingGray: "#535353",
