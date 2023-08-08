@@ -18,8 +18,8 @@ router.get("/vocabulary", (req, res) => {
 });
 
 //Route for matching game vocabulary
-router.get("/matchingwords", (req, res) => {
-    prisma.matching_game_view
+router.get("/quizwords", (req, res) => {
+    prisma.quizword_view
         .findFirst()
         .then((result) => {
             res.status(200).json(result);
