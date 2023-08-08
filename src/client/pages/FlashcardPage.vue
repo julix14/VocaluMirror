@@ -1,6 +1,8 @@
 <template>
     <div
         class="bg-lightBlue bg-opacity-75 w-screen h-fit min-h-screen flex flex-col justify-start items-center">
+        <HomeButton />
+
         <div>
             <p class="text-white text-8xl xl:text-9xl text-center mt-10 drop-shadow-2xl">
                 Flash Cards
@@ -18,6 +20,7 @@
 
 <script setup>
 import FlashCard from "../components/FlashCard.vue";
+import HomeButton from "../components/buttons/HomeButton.vue";
 import { ref } from "vue";
 
 const props = defineProps({
