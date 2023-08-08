@@ -5,10 +5,15 @@
 1. Rename the `env.example` file to `.env`
 2. `npm install` To install all dependecies that are needed
 3. `docker-compose up` To start the database
-4. `npm run migrate up` To migrate the database
-5. `npm run dev` To start the server
+4. `npx prisma migrate dev` To migrate the database
+5. `npx prisma db seed` To seed the database
+6. `npm run dev` To start the server
 
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/oaK-E1m7)
+
+## Teamwork
+
+Many of the tasks were done together in pair programming sessions.
 
 # Vue 3 + Vite
 
