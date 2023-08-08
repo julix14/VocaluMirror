@@ -184,7 +184,7 @@ function selectedIsWrong() {
 // Reset the options and load new words
 async function loadNewWords() {
     try {
-        const response = await axios.get(`${import.meta.env.VITE_APP_URL}/matchingwords`);
+        const response = await axios.get(`${import.meta.env.VITE_APP_URL}/quizwords`);
         return response.data;
     } catch (error) {
         console.log(error);
