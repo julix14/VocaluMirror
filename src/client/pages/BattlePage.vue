@@ -6,7 +6,7 @@
                 Word Battle
             </p>
             <p class="text-subHeadingGray text-3xl xl:text-4xl text-center font-bold mt-4">
-                Who know more vocabulary words?
+                Find the fitting translation and beat the computer!
             </p>
         </div>
         <div class="grid grid-cols-4 grid-rows-3 h-full mt-8 justify-items-center gap-4">
@@ -49,6 +49,17 @@
                 <p class="text-6xl text-center mt-4">{{ timer }}</p>
             </div>
         </div>
+
+        <div>
+            <VocaluModal
+                v-if="gameFinished"
+                :isPositve="userHealth > 0"
+                @next="nextRound"
+                positiveMessage="You won the game! 🥳"
+                negativeMessage="You lost the game! 😢"
+                color="bg-yellow"
+                nextButtonMessage="Next round" />
+        </div>
     </div>
 </template>
 
@@ -56,8 +67,9 @@
 import BattleCharacter from "../components/BattleCharacter.vue";
 import HomeButton from "../components/buttons/HomeButton.vue";
 import MatchingButton from "../components/buttons/MatchingButton.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import axios from "axios";
+import VocaluModal from "../components/VocaluModal.vue";
 
 const props = defineProps({
     data: {
@@ -72,6 +84,14 @@ const props = defineProps({
 
 const userHealth = ref(100);
 const computerHealth = ref(100);
+
+const gameFinished = ref(false);
+
+watch([userHealth, computerHealth], ([userHealthValue, computerHealthValue]) => {
+    if (userHealthValue <= 0 || computerHealthValue <= 0) {
+        gameFinished.value = true;
+    }
+});
 
 function getPositioningClasses(index) {
     let classesToReturn = "";
@@ -160,6 +180,17 @@ async function answerSelected(index) {
 
     // Set the selected option to true to style button liked pressed
     answerOptions.value[index].selected = true;
+    if (answerOptions.value[index].correct) {
+        // Show the Modal with the correct styling
+        selectedIsCorrect();
+    } else {
+        selectedIsWrong();
+    }
+
+    temporaryWords = await loadNewWords();
+    if (userHealth.value <= 0 || computerHealth.value <= 0) {
+        return;
+    }
 
     // Start the timer
     timer.value = 3;
@@ -172,16 +203,6 @@ async function answerSelected(index) {
             nextQuestion();
         }
     }, 1000);
-
-    if (answerOptions.value[index].correct) {
-        // Show the Modal with the correct styling
-        selectedIsCorrect();
-    } else {
-        selectedIsWrong();
-    }
-
-    // Load the new words to reduce waiting time
-    temporaryWords = await loadNewWords();
 }
 
 function selectedIsCorrect() {
@@ -198,7 +219,6 @@ function selectedIsWrong() {
     userHealth.value -= 10;
 }
 
-// Reset the options and load new words
 async function loadNewWords() {
     try {
         const response = await axios.get(`${import.meta.env.VITE_APP_URL}/quizwords`);
@@ -209,14 +229,18 @@ async function loadNewWords() {
     }
 }
 
-// Gets called when the next button in the modal is pressed
 function nextQuestion() {
-    // Reset the styling of the options and the modal
     optionSelected.value = false;
     correctGuess.value = false;
 
-    // Set the new words to the answer options and display them
     answerOptions.value = rawVocabularyToAnswers(temporaryWords);
+}
+
+function nextRound() {
+    gameFinished.value = false;
+    userHealth.value = 100;
+    computerHealth.value = 100;
+    nextQuestion();
 }
 
 // Change the colors of the options in the array

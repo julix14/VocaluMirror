@@ -24,8 +24,11 @@
         <Transition name="fade">
             <VocaluModal
                 v-show="optionSelected"
-                :isCorrect="correctGuess"
-                @nextQuestion="nextQuestion" />
+                :isPositve="correctGuess"
+                @next="nextQuestion"
+                color="bg-rose"
+                positiveMessage="You earned +5 Points"
+                negativeMessage="You lost 5 Points" />
         </Transition>
         <div class="w-2/3 mx-auto px-32 mb-4">
             <p class="text-white text-4xl text-center">Score: {{ score }}</p>
