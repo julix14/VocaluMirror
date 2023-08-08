@@ -13,8 +13,8 @@
             <BattleCharacter
                 class="row-start-3"
                 avatar="avatars/avatar1.png"
-                name="Player"
-                health="31" />
+                :name="props.user?.name ?? 'You'"
+                :health="userHealth" />
             <MatchingButton
                 class="col-start-2 row-start-1 col-span-2 cursor-default"
                 color="bg-white"
@@ -32,7 +32,22 @@
                 class="col-start-4 row-start-1"
                 avatar="avatars/avatar2.png"
                 name="Computer"
-                health="90" />
+                :health="computerHealth" />
+        </div>
+        <div
+            v-if="timer"
+            class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div class="bg-white p-8 rounded-lg">
+                <p v-if="correctGuess" class="text-2xl text-center">
+                    <span class="font-bold text-3xl">You won! 🥳</span> <br />
+                    Next round in...
+                </p>
+                <p v-else class="text-2xl text-center">
+                    <span class="font-bold text-3xl">You lost! 😢</span> <br />
+                    Next round in...
+                </p>
+                <p class="text-6xl text-center mt-4">{{ timer }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -49,7 +64,14 @@ const props = defineProps({
         type: Object,
         required: true,
     },
+    user: {
+        type: Object,
+        required: false,
+    },
 });
+
+const userHealth = ref(100);
+const computerHealth = ref(100);
 
 function getPositioningClasses(index) {
     let classesToReturn = "";
@@ -139,6 +161,18 @@ async function answerSelected(index) {
     // Set the selected option to true to style button liked pressed
     answerOptions.value[index].selected = true;
 
+    // Start the timer
+    timer.value = 3;
+    const intervalId = setInterval(() => {
+        timer.value--;
+        if (timer.value === 0 || timer.value === null) {
+            clearInterval(intervalId);
+            optionSelected.value = false;
+            timer.value = null;
+            nextQuestion();
+        }
+    }, 1000);
+
     if (answerOptions.value[index].correct) {
         // Show the Modal with the correct styling
         selectedIsCorrect();
@@ -152,10 +186,16 @@ async function answerSelected(index) {
 
 function selectedIsCorrect() {
     correctGuess.value = true;
+    computerHealth.value -= 10;
+
+    if (userHealth.value < 99) {
+        userHealth.value += 2;
+    }
 }
 
 function selectedIsWrong() {
     correctGuess.value = false;
+    userHealth.value -= 10;
 }
 
 // Reset the options and load new words
@@ -169,6 +209,16 @@ async function loadNewWords() {
     }
 }
 
+// Gets called when the next button in the modal is pressed
+function nextQuestion() {
+    // Reset the styling of the options and the modal
+    optionSelected.value = false;
+    correctGuess.value = false;
+
+    // Set the new words to the answer options and display them
+    answerOptions.value = rawVocabularyToAnswers(temporaryWords);
+}
+
 // Change the colors of the options in the array
 function changeColors() {
     answerOptions.value.map((answer) => {
@@ -179,6 +229,8 @@ function changeColors() {
         }
     });
 }
+
+const timer = ref(null);
 </script>
 
 <style scoped>

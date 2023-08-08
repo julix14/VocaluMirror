@@ -53,7 +53,7 @@ watch(
         healthDiff.value = newVal - oldVal;
         setTimeout(() => {
             resetHealthDiff();
-        }, 1000);
+        }, 3200);
     }
 );
 
