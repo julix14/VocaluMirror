@@ -46,13 +46,13 @@ model VocabularyOnUser {
 
 model Flashcard {
   id          Int               @id @default(autoincrement())
-  topic       String            @default("General")
   question    String            @unique
   answer      String
   language_id Int
-  stage       Int               @default(1)
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
+  stage       Int               @default(1)
+  topic       String            @default("General")
   language    Language          @relation(fields: [language_id], references: [id])
   user        FlashcardOnUser[]
 }
@@ -75,11 +75,11 @@ model Language {
   word_vocabulary    Vocabulary[] @relation("word_language")
 }
 
-view matching_game_view {
-  id               String  @id
-  correct_word     String?
-  correct_meaning  String?
-  img_url          String?
-  word_language_id Int?
-  wrong_word       String?
+view quizword_view {
+  id               Int    @id @unique
+  correct_word     String
+  correct_meaning  String
+  img_url          String
+  word_language_id Int
+  wrong_word       String
 }

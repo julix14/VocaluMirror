@@ -1,6 +1,6 @@
 WITH correct_word AS (
   SELECT
-    '123' :: text AS id,
+    "Vocabulary".id,
     "Vocabulary".word,
     "Vocabulary".meaning,
     "Vocabulary".image_url,

@@ -19,6 +19,19 @@ const router = createRouter({
         {
             path: "/battle",
             component: BattlePage,
+            beforeEnter: (to, from, next) => {
+                axios
+                    .get(`${import.meta.env.VITE_APP_URL}/quizwords`)
+                    .then((response) => {
+                        to.params.data = response.data;
+                        next();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        next();
+                    });
+            },
+            props: true,
             meta: {
                 title: "Battle",
             },
@@ -28,7 +41,7 @@ const router = createRouter({
             component: MatchingPage,
             beforeEnter: (to, from, next) => {
                 axios
-                    .get(`${import.meta.env.VITE_APP_URL}/matchingwords`)
+                    .get(`${import.meta.env.VITE_APP_URL}/quizwords`)
                     .then((response) => {
                         to.params.data = response.data;
                         next();

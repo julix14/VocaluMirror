@@ -1,7 +1,18 @@
 <template>
-    <div class="flex flex-col justify-center">
-        <progress class="w-36 h-2" :value="health" max="100"></progress>
-        <img :src="getFullUrl(avatar)" alt="characterImage" class="w-36 aspect-square mt-2" />
+    <div class="flex flex-col justify-center w-36 h-36 drop-shadow-2xl">
+        <div class="w-full bg-gray-200 rounded-xl">
+            <div
+                class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-2xl"
+                :class="{
+                    'bg-red-700': health < 30,
+                    'bg-orange': health >= 30 && health <= 60,
+                    'bg-green-700': health > 60,
+                }"
+                :style="{ width: health + '%' }">
+                {{ health }}
+            </div>
+        </div>
+        <img :src="getFullUrl(avatar)" alt="characterImage" class="aspect-square mt-2" />
         <p class="text-subHeadingGray text-2xl text-center">{{ name }}</p>
     </div>
 </template>
@@ -21,7 +32,7 @@ defineProps({
     health: {
         type: Number,
         required: true,
-        default: 90,
+        default: 31,
     },
 });
 
@@ -31,3 +42,5 @@ function getFullUrl(relativeUrl) {
     return new URL(fullPath, baseUrl.origin).href;
 }
 </script>
+
+<style scoped></style>
