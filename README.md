@@ -21,3 +21,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ## Github Template for Setup
 
 https://github.com/szymmis/vite-express
+
+## Avatar Picture source
+
+https://www.freepik.com/free-vector/hand-drawn-people-avatar-pack_4077120.htm#query=profile%20avatar&position=48&from_view=keyword&track=ais
