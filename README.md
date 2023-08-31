@@ -1,4 +1,13 @@
-# Instructions
+# Vocalu
+
+## Description
+
+Ths is the MVP of Vocalu.
+Vocalu is a web application that allows users to learn new languages. The application is based on the spaced repetition technique.
+Because it is an MVP, the application provides only the basic functionalities, that is needed to understand the concept of it. These functionalities are the three game modes (Battle, Matching, Flashcards).
+To make this application more coprehensive, there should be added more features like: Multiple User Support and the ability to create your own falshcards, as well as multiple languages support. These functionalities are not implemented in this MVP.
+
+# Instructions for the user
 
 ## Run the Project:
 
@@ -13,20 +22,18 @@
 
 ## Teamwork
 
-Many of the tasks were done together in pair programming sessions.
-
-# Vue 3 + Vite
-
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
--   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Some of the tasks were done together in pair programming sessions and only one party contributed to the repository.
 
 ## Github Template for Setup
 
 https://github.com/szymmis/vite-express
 
-## Avatar Picture source
+# Sources
+
+## Battle Page Icons
 
 https://www.freepik.com/free-vector/hand-drawn-people-avatar-pack_4077120.htm#query=profile%20avatar&position=48&from_view=keyword&track=ais
+
+## Matching Images
+
+Mostly from wikipedia else the source can be found in the seeder.
