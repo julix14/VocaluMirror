@@ -198,18 +198,9 @@ async function main() {
                     {
                         flashcard: {
                             create: {
-                                question: "What is the capital of France?",
-                                answer: "Paris",
-                                language_id: 1,
-                            },
-                        },
-                    },
-
-                    {
-                        flashcard: {
-                            create: {
-                                question: "What is the largest country in the world?",
-                                answer: "Russia",
+                                question: "What is the past tense of 'go'?",
+                                answer: "Went",
+                                topic: "Verbs",
                                 language_id: 1,
                             },
                         },
@@ -217,8 +208,9 @@ async function main() {
                     {
                         flashcard: {
                             create: {
-                                question: "What is the currency of Japan?",
-                                answer: "Yen",
+                                question: "What is the plural form of 'child'?",
+                                answer: "Children",
+                                topic: "Nouns",
                                 language_id: 1,
                             },
                         },
@@ -226,8 +218,9 @@ async function main() {
                     {
                         flashcard: {
                             create: {
-                                question: "What is the highest mountain in the world?",
-                                answer: "Mount Everest",
+                                question: "What's the synonym of 'happy'?",
+                                answer: "Joyful",
+                                topic: "Vocabulary",
                                 language_id: 1,
                             },
                         },
@@ -235,8 +228,9 @@ async function main() {
                     {
                         flashcard: {
                             create: {
-                                question: "What is the currency of the United States?",
-                                answer: "US Dollar",
+                                question: "What does 'omnivore' mean?",
+                                answer: "An animal that eats both plants and meat.",
+                                topic: "Vocabulary",
                                 language_id: 1,
                             },
                         },
@@ -244,8 +238,61 @@ async function main() {
                     {
                         flashcard: {
                             create: {
-                                question: "What is the largest ocean in the world?",
-                                answer: "Pacific Ocean",
+                                question: "What is the opposite of 'ancient'?",
+                                answer: "Modern",
+                                topic: "Adjectives",
+                                language_id: 1,
+                            },
+                        },
+                    },
+                    {
+                        flashcard: {
+                            create: {
+                                question:
+                                    "How do you turn the statement 'He is running.' into a question?",
+                                answer: "Is he running?",
+                                topic: "Sentence Structure",
+                                language_id: 1,
+                            },
+                        },
+                    },
+                    {
+                        flashcard: {
+                            create: {
+                                question: "What is the first person singular pronoun?",
+                                answer: "I",
+                                topic: "Pronouns",
+                                language_id: 1,
+                            },
+                        },
+                    },
+                    {
+                        flashcard: {
+                            create: {
+                                question: "What's the meaning of the idiom 'break the ice'?",
+                                answer: "To initiate social interactions; to start a conversation.",
+                                topic: "Idioms",
+                                language_id: 1,
+                            },
+                        },
+                    },
+                    {
+                        flashcard: {
+                            create: {
+                                question: "What is the superlative form of 'bad'?",
+                                answer: "Worst",
+                                topic: "Adjectives",
+                                language_id: 1,
+                            },
+                        },
+                    },
+                    {
+                        flashcard: {
+                            create: {
+                                question:
+                                    "Conjugate the verb 'to be' in present tense for 'he/she/it'.",
+                                answer: "Is",
+                                topic: "Verbs",
                                 language_id: 1,
                             },
                         },
