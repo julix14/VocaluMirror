@@ -22,12 +22,18 @@ To make this application more coprehensive, there should be added more features 
 
 ## Teamwork
 
-Many of the tasks were done together in pair programming sessions.
+Some of the tasks were done together in pair programming sessions and only one party contributed to the repository.
 
 ## Github Template for Setup
 
 https://github.com/szymmis/vite-express
 
-## Avatar Picture source
+# Sources
+
+## Battle Page Icons
 
 https://www.freepik.com/free-vector/hand-drawn-people-avatar-pack_4077120.htm#query=profile%20avatar&position=48&from_view=keyword&track=ais
+
+## Matching Images
+
+Mostly from wikipedia else the source can be found in the seeder.

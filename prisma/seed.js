@@ -32,7 +32,8 @@ async function main() {
                                 meaning: "Tiger",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Tiger",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Bengal_tiger_%28Panthera_tigris_tigris%29_female_3_crop.jpg/600px-Bengal_tiger_%28Panthera_tigris_tigris%29_female_3_crop.jpg",
                             },
                         },
                     },
@@ -43,7 +44,8 @@ async function main() {
                                 meaning: "Giraffe",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Giraffe",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Giraffen.jpg/600px-Giraffen.jpg",
                             },
                         },
                     },
@@ -54,7 +56,8 @@ async function main() {
                                 meaning: "Affe",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Monkey",
+                                image_url:
+                                    "https://media.npr.org/assets/img/2017/09/12/macaca_nigra_self-portrait-3e0070aa19a7fe36e802253048411a38f14a79f8-s1100-c50.jpg",
                             },
                         },
                     },
@@ -65,7 +68,8 @@ async function main() {
                                 meaning: "Känguru",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Kangaroo",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kangaroo_Australia_01_11_2008_-_retouch.JPG/440px-Kangaroo_Australia_01_11_2008_-_retouch.JPG",
                             },
                         },
                     },
@@ -76,7 +80,8 @@ async function main() {
                                 meaning: "Pinguin",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Penguin",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Penguins_collage.png/520px-Penguins_collage.png",
                             },
                         },
                     },
@@ -87,7 +92,8 @@ async function main() {
                                 meaning: "Zebra",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Zebra",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Plains_Zebra_Equus_quagga.jpg/440px-Plains_Zebra_Equus_quagga.jpg",
                             },
                         },
                     },
@@ -98,7 +104,8 @@ async function main() {
                                 meaning: "Delfin",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Dolphin",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/440px-Tursiops_truncatus_01.jpg",
                             },
                         },
                     },
@@ -109,7 +116,8 @@ async function main() {
                                 meaning: "Hai",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Shark",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/TDpGUipa.jpg/440px-TDpGUipa.jpg",
                             },
                         },
                     },
@@ -120,7 +128,8 @@ async function main() {
                                 meaning: "Koala",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Koala",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/480px-Koala_climbing_tree.jpg",
                             },
                         },
                     },
@@ -131,7 +140,8 @@ async function main() {
                                 meaning: "Panda",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Panda",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/440px-Grosser_Panda.JPG",
                             },
                         },
                     },
@@ -142,7 +152,8 @@ async function main() {
                                 meaning: "Schildkröte",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Turtle",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Mocs%C3%A1ri_tekn%C5%91s_Kiserd%C5%91_2016.jpg/440px-Mocs%C3%A1ri_tekn%C5%91s_Kiserd%C5%91_2016.jpg",
                             },
                         },
                     },
@@ -153,7 +164,8 @@ async function main() {
                                 meaning: "Eidechse",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Lizard",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Chameleon_in_Berenty_Madagascar_0001.JPG/440px-Chameleon_in_Berenty_Madagascar_0001.JPG",
                             },
                         },
                     },
@@ -164,7 +176,8 @@ async function main() {
                                 meaning: "Krokodil",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Crocodile",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/440px-Nile_crocodile_head.jpg",
                             },
                         },
                     },
@@ -175,7 +188,8 @@ async function main() {
                                 meaning: "Eisbär",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/PolarBear",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Polar_Bear_-_Alaska_%28cropped%29.jpg/440px-Polar_Bear_-_Alaska_%28cropped%29.jpg",
                             },
                         },
                     },
@@ -186,7 +200,8 @@ async function main() {
                                 meaning: "Kaninchen",
                                 word_language_id: 1,
                                 meaning_language_id: 2,
-                                image_url: "https://loremflickr.com/640/640/Rabbit",
+                                image_url:
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/440px-Oryctolagus_cuniculus_Rcdo.jpg",
                             },
                         },
                     },
