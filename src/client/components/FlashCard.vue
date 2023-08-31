@@ -12,9 +12,7 @@
             <div class="h-full flex flex-col justify-between">
                 <div class="grid grid-cols-3 p-2">
                     <p class="text-xl justify-self-start">{{ flashCard.topic }}</p>
-                    <p class="text-xl col-start-3 justify-self-end">
-                        Stage {{ flashCard.stage }} / 5
-                    </p>
+                    <div>&nbsp;</div>
                 </div>
                 <p class="text-3xl p-2 text-center">{{ flashCard.question }}</p>
 

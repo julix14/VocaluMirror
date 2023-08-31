@@ -13,7 +13,7 @@ To make this application more coprehensive, there should be added more features 
 
 1. Rename the `env.example` file to `.env`
 2. `npm install` To install all dependecies that are needed
-3. `docker-compose up` To start the database
+3. `docker-compose up -d` To start the database
 4. `npx prisma migrate dev` To migrate the database
 5. `npx prisma db seed` To seed the database
 6. `npm run dev` To start the server
